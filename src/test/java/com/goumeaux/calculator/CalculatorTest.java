@@ -10,15 +10,13 @@ import org.assertj.core.api.Assertions;
 
 class CalculatorTest {
     @BeforeEach
-    void setUp() {
-        Calculator calculator = new Calculator();
+    void set_up() {
         int opG = 1;
         int opD = 1;
     };
 
     @AfterEach
-    void tearDown() {
-        Calculator calculator = null;
+    void tear_down() {
         int opG = 0;
         int opD = 0;
     }
@@ -28,10 +26,8 @@ class CalculatorTest {
         // GIVEN
         int opG = 1;
         int opD = 1;
-        Calculator calculator = new Calculator();
-
         // WHEN
-        int resultat = calculator.add(opG, opD);
+        int resultat = Calculator.add(opG, opD);
         // THEN
         assertThat(resultat).isEqualTo(opG + opD);
     }
@@ -41,9 +37,8 @@ class CalculatorTest {
          // GIVEN
          int opG = 1;
          int opD = 1;
-         Calculator calculator = new Calculator();
          // WHEN
-         int resultat = calculator.divide(opG,opD);
+         int resultat = Calculator.divide(opG,opD);
          // THEN
          assertThat(resultat).isEqualTo(opG / opD);
     }
@@ -53,9 +48,8 @@ class CalculatorTest {
         // GIVEN
         int opG = 1;
         int opD = 0;
-        Calculator calculator = new Calculator();
         // WHEN
-        Throwable uneErreur = Assertions.catchThrowable(()->calculator.divide(opG,opD));
+        Throwable uneErreur = Assertions.catchThrowable(()->Calculator.divide(opG,opD));
         // THEN
         assertThat(uneErreur).hasMessage("Division par 0 impossible");
     }
