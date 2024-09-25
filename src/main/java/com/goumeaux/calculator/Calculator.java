@@ -6,7 +6,15 @@ import java.util.Set;
 public class Calculator {
     // MÉTHODES
     public static int add(int opG, int opD) {
-        return opG + opD;
+        if ((opG > 0 && opD > Integer.MAX_VALUE - opG) || (opD > 0 && opG > Integer.MAX_VALUE - opD)) {
+            throw new RuntimeException("Dépassement de la limite du Int");
+        }
+        else if ((opG < 0 && opD < Integer.MIN_VALUE + opG) || (opD < 0 && opG < Integer.MIN_VALUE + opD)) {
+            throw new RuntimeException("Dépassement de la limite du Int");
+        }
+        else {
+            return opG + opD;
+        }
     };
 
     public static int divide(int opG, int opD) {

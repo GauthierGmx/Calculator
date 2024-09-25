@@ -55,6 +55,17 @@ class CalculatorTest {
         // THEN
         assertThat(resultat).isEqualTo(resultatAttendu);
     }
+
+    @Test
+    void add_devrait_retourner_une_erreur_en_cas_de_depassement_de_variable() {
+        // GIVEN
+        opG = 2147483647;
+        opD = 1;
+        // WHEN
+        Throwable uneErreur = Assertions.catchThrowable(()->Calculator.add(opG,opD));
+        // THEN
+        assertThat(uneErreur).hasMessage("Dépassement de la limite du Int");
+    }
     /* ===========================
         TEST DE LA METHODE DIVIDE
        =========================== */
