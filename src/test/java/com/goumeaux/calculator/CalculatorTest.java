@@ -7,36 +7,56 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CalculatorTest {
+    int opG;
+    int opD;
+
     @BeforeEach
     void set_up() {
-        int opG = 1;
-        int opD = 1;
+        opG = 1;
+        opD = 1;
     };
 
     @AfterEach
     void tear_down() {
-        int opG = 0;
-        int opD = 0;
+        opG = 0;
+        opD = 0;
     }
 
+    /* ========================
+        TEST DE LA METHODE ADD
+       ======================== */
     @Test
     void add_devrait_calculer_la_somme_des_deux_operateurs() {
-        // GIVEN
-        int opG = 1;
-        int opD = 1;
         // WHEN
         int resultat = Calculator.add(opG, opD);
         // THEN
         assertThat(resultat).isEqualTo(opG + opD);
     }
 
+    @ParameterizedTest
+    @CsvSource ({
+            "0,1,1",
+            "1,2,3",
+            "-2,2,0",
+            "0,0,0",
+            "-1,-2,-3"
+    })
+    void add_devrait_calculer_la_somme_des_valeurs_parametrees(int opG, int opD, int resultatAttendu) {
+        // WHEN
+        int resultat = Calculator.add(opG, opD);
+        // THEN
+        assertThat(resultat).isEqualTo(resultatAttendu);
+    }
+    /* ===========================
+        TEST DE LA METHODE DIVIDE
+       =========================== */
     @Test
     void divide_devrait_calculer_la_division_des_deux_operateurs() {
-         // GIVEN
-         int opG = 1;
-         int opD = 1;
          // WHEN
          int resultat = Calculator.divide(opG,opD);
          // THEN
@@ -45,9 +65,6 @@ class CalculatorTest {
 
     @Test
     void divide_devrait_lever_une_erreur_en_cas_de_division_par_zero() {
-        // GIVEN
-        int opG = 1;
-        int opD = 0;
         // WHEN
         Throwable uneErreur = Assertions.catchThrowable(()->Calculator.divide(opG,opD));
         // THEN
