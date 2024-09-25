@@ -11,6 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.HashSet;
+import java.util.Set;
+
 class CalculatorTest {
     int opG;
     int opD;
@@ -69,5 +72,24 @@ class CalculatorTest {
         Throwable uneErreur = Assertions.catchThrowable(()->Calculator.divide(opG,opD));
         // THEN
         assertThat(uneErreur).hasMessage("Division par 0 impossible");
+    }
+
+    /* ====================================
+        TEST DE LA MÉTHODE ENSEMBLECHIFFRE
+       ==================================== */
+    @Test
+    void ensembleChiffre_devrait_retourner_la_liste_des_chiffres_qui_compose_le_nombre() {
+        // GIVEN
+        int unNombre = -11;
+
+        Set<Integer> chiffresAttendus = new HashSet<Integer>();
+        String nombreStr = String.valueOf(Math.abs(unNombre));
+        for (int i = 0; i < nombreStr.length(); i++) {
+            chiffresAttendus.add(Character.getNumericValue(nombreStr.charAt(i)));
+        }
+        // WHEN
+        Set<Integer> resultat = Calculator.ensembleChiffres(unNombre);
+        // THEN
+        assertThat(resultat).containsExactlyInAnyOrderElementsOf(chiffresAttendus);
     }
 }
