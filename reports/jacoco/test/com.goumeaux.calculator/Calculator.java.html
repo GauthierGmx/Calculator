@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">calculator</a> &gt; <a href="index.source.html" class="el_package">com.goumeaux.calculator</a> &gt; <span class="el_source">Calculator.java</span></div><h1>Calculator.java</h1><pre class="source lang-java linenums">package com.goumeaux.calculator;
+
+import java.util.HashSet;
+import java.util.Set;
+
+<span class="nc" id="L6">public class Calculator {</span>
+    // MÃ‰THODES
+    public static int add(int opG, int opD) {
+<span class="pc bpc" id="L9" title="1 of 8 branches missed.">        if ((opG &gt; 0 &amp;&amp; opD &gt; Integer.MAX_VALUE - opG) || (opD &gt; 0 &amp;&amp; opG &gt; Integer.MAX_VALUE - opD)) {</span>
+<span class="fc" id="L10">            throw new RuntimeException(&quot;DÃ©passement de la limite du Int&quot;);</span>
+        }
+<span class="pc bpc" id="L12" title="2 of 8 branches missed.">        else if ((opG &lt; 0 &amp;&amp; opD &lt; Integer.MIN_VALUE - opG) || (opD &lt; 0 &amp;&amp; opG &lt; Integer.MIN_VALUE - opD)) {</span>
+<span class="nc" id="L13">            throw new RuntimeException(&quot;DÃ©passement de la limite du Int&quot;);</span>
+        }
+        else {
+<span class="fc" id="L16">            return opG + opD;</span>
+        }
+    };
+
+    public static int divide(int opG, int opD) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (opD != 0) {</span>
+<span class="fc" id="L22">            return opG / opD;</span>
+        }
+        else {
+<span class="fc" id="L25">            throw new RuntimeException(&quot;Division par 0 impossible&quot;);</span>
+        }
+    };
+
+    public static Set&lt;Integer&gt; ensembleChiffres(int pNombre) {
+<span class="fc" id="L30">        Set&lt;Integer&gt; listeChiffre = new HashSet&lt;Integer&gt;();</span>
+<span class="fc" id="L31">        String nombreStr = String.valueOf(Math.abs(pNombre));</span>
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; nombreStr.length(); i++) {</span>
+<span class="fc" id="L34">            char c = nombreStr.charAt(i);</span>
+<span class="fc" id="L35">            listeChiffre.add(Character.getNumericValue(c));</span>
+        }
+<span class="fc" id="L37">        return listeChiffre;</span>
+    };
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
