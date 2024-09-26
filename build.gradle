@@ -22,6 +22,18 @@ test {
 	finalizedBy jacocoTestReport
 }
 
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 1.0
+			}
+		}
+	}
+}
+
+check.dependsOn jacocoTestCoverageVerification
+
 jacocoTestReport {
 	dependsOn test
 	reports {
