@@ -79,6 +79,9 @@ class CalculatorTest {
 
     @Test
     void divide_devrait_lever_une_erreur_en_cas_de_division_par_zero() {
+        // GIVEN
+        opG = 1;
+        opD = 0;
         // WHEN
         Throwable uneErreur = Assertions.catchThrowable(()->Calculator.divide(opG,opD));
         // THEN

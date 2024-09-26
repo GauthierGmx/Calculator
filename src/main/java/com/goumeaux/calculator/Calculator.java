@@ -9,7 +9,7 @@ public class Calculator {
         if ((opG > 0 && opD > Integer.MAX_VALUE - opG) || (opD > 0 && opG > Integer.MAX_VALUE - opD)) {
             throw new RuntimeException("Dépassement de la limite du Int");
         }
-        else if ((opG < 0 && opD < Integer.MIN_VALUE + opG) || (opD < 0 && opG < Integer.MIN_VALUE + opD)) {
+        else if ((opG < 0 && opD < Integer.MIN_VALUE - opG) || (opD < 0 && opG < Integer.MIN_VALUE - opD)) {
             throw new RuntimeException("Dépassement de la limite du Int");
         }
         else {
